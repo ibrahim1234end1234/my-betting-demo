@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Prediction Demo</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#10131a;
+  color:white;
+}
+header{
+  padding:18px;
+  background:#181d27;
+  text-align:center;
+}
+header h1{margin:0;font-size:25px}
+.balance{
+  margin:15px;
+  padding:18px;
+  background:#202735;
+  border-radius:15px;
+  text-align:center;
+}
+.balance strong{font-size:28px}
+.container{padding:15px}
+.match{
+  background:#1b212d;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:15px;
+}
+.match h2{margin-top:0}
+.teams{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+.team{
+  flex:1;
+  padding:15px;
+  background:#292f3d;
+  border:1px solid #444;
+  border-radius:10px;
+  color:white;
+}
+.team:hover{background:#343b4c}
+.slip{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#181d27;
+  padding:15px;
+  border-top:1px solid #444;
+}
+button{
+  cursor:pointer;
+  border:0;
+  border-radius:9px;
+  padding:12px;
+  font-weight:bold;
+}
+.place{
+  width:100%;
+  margin-top:8px;
+  background:#28a745;
+  color:white;
+}
+#selected{
+  margin:5px 0;
+  color:#ddd;
+}
+.note{
+  text-align:center;
+  font-size:12px;
+  color:#999;
+  padding:10px 0 100px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎯 My Prediction Demo</h1>
+  <p>Virtual Coins Only</p>
+</header>
+
+<div class="balance">
+  <div>আপনার Virtual Balance</div>
+  <strong>🪙 <span id="balance">1000</span></strong>
+</div>
+
+<div class="container">
+
+  <div class="match">
+    <h2>⚽ Match 1</h2>
+    <p>Team A vs Team B</p>
+
+    <div class="teams">
+      <button class="team" onclick="selectTeam('Team A')">
+        Team A<br><br>1.80
+      </button>
+
+      <button class="team" onclick="selectTeam('Team B')">
+        Team B<br><br>2.10
+      </button>
+    </div>
+  </div>
+
+  <div class="match">
+    <h2>⚽ Match 2</h2>
+    <p>Team C vs Team D</p>
+
+    <div class="teams">
+      <button class="team" onclick="selectTeam('Team C')">
+        Team C<br><br>1.60
+      </button>
+
+      <button class="team" onclick="selectTeam('Team D')">
+        Team D<br><br>2.40
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="note">
+  এটি শুধুমাত্র একটি demo/prediction project। এখানে কোনো real-money betting বা payment নেই।
+</div>
+
+<div class="slip">
+  <b>🎫 Demo Prediction Slip</b>
+  <div id="selected">কোনো দল নির্বাচন করা হয়নি</div>
+
+  <button class="place" onclick="placePrediction()">
+    Submit Demo Prediction — 100 Coins
+  </button>
+</div>
+
+<script>
+let balance = 1000;
+let selected = "";
+
+function selectTeam(team){
+  selected = team;
+  document.getElementById("selected").innerText =
+    "Selected: " + team;
+}
+
+function placePrediction(){
+  if(selected === ""){
+    alert("আগে একটি দল নির্বাচন করুন!");
+    return;
+  }
+
+  if(balance < 100){
+    alert("Virtual Coins শেষ!");
+    return;
+  }
+
+  balance -= 100;
+  document.getElementById("balance").innerText = balance;
+
+  alert(
+    "Demo Prediction Submitted!\\n\\n" +
+    "আপনার নির্বাচন: " + selected +
+    "\\nVirtual Coins: 100"
+  );
+
+  selected = "";
+  document.getElementById("selected").innerText =
+    "কোনো দল নির্বাচন করা হয়নি";
+}
+</script>
+
+</body>
+</html>
